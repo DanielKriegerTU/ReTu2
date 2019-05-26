@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ReTu</string>
+    <string name="title_activity_maps">ReTuMap</string>
 </resources>

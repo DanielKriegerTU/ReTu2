@@ -15,16 +15,21 @@
 
         <ImageView
             android:id="@+id/retoureanmelden"
-            android:clickable="true"
-            android:onClick="OnClickRetoureAnmelden"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="60dp"
+            android:clickable="true"
+            android:onClick="OnClickRetoureAnmelden"
             app:srcCompat="@drawable/retoureanmelden" />
 
         <ImageView
             android:id="@+id/meineretouren"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
             app:srcCompat="@drawable/meineretouren" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
