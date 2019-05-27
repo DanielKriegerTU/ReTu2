@@ -19,7 +19,7 @@ public class MainMenu extends AppCompatActivity {
 
     }
     public void OnClickRetoureAnmelden(View view){
-        Intent myIntent = new Intent(this, PaketGroesse.class);
+        Intent myIntent = new Intent(this, MapsActivity.class);
         startActivity(myIntent);
     }
 

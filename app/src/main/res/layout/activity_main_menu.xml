@@ -6,30 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainMenu">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/retoureanmelden"
+        android:onClick="OnClickRetoureAnmelden"
+
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="255dp">
+        android:layout_height="wrap_content"
 
-        <ImageView
-            android:id="@+id/retoureanmelden"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="60dp"
-            android:clickable="true"
-            android:onClick="OnClickRetoureAnmelden"
-            app:srcCompat="@drawable/retoureanmelden" />
+        android:clickable="true"
+        app:srcCompat="@drawable/retoureanmelden"
+        tools:layout_editor_absoluteY="60dp" />
 
-        <ImageView
-            android:id="@+id/meineretouren"
+    <ImageView
+        android:id="@+id/meineretouren"
+        app:layout_constraintTop_toBottomOf="@id/retoureanmelden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/meineretouren"
+        tools:layout_editor_absoluteY="20dp" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/meineretouren" />
-    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
