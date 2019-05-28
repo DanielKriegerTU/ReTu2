@@ -11,12 +11,15 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -35,6 +38,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        ImageView zeitstrahl = (ImageView) findViewById(R.id.zeitstrahl);
+        zeitstrahl.setImageResource(R.drawable.zeitstrahl);
     }
 
     public void onMapSearch(View view) {
@@ -62,9 +67,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(27.746974, 85.301582);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Kathmandu, Nepal"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng dortmund = new LatLng(51.51494, 7.466);
+        LatLng dortmund_leopoldstr = new LatLng(51.521515, 7.462081);
+        LatLng dortmund_steinstrasse1 = new LatLng(51.519948, 7.461722);
+        LatLng dortmund_kapellenstrasse = new LatLng(51.519210, 7.465964);
+        LatLng dortmund_steinstrasse = new LatLng(51.520076, 7.457932);
+        LatLng dortmund_zimmerstrasse = new LatLng(51.521384, 7.463759);
+
+
+        mMap.addMarker(new MarkerOptions().position(dortmund).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dortmund,12f));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
