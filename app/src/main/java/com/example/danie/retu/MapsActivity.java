@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -29,6 +32,8 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private SeekBar seekbar_zeit;
+    final LatLng dortmund_zimmerstrasse = new LatLng(51.521384, 7.463759);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         ImageView zeitstrahl = (ImageView) findViewById(R.id.zeitstrahl);
         zeitstrahl.setImageResource(R.drawable.zeitstrahl);
+        this.seekbar_zeit = findViewById(R.id.seekbar_zeit);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Veraendern der Marker durch Seekbar
+        seekbar_zeit.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress == 50) {
+
+                    final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+
+                }
+                if (progress == 49) {
+
+                    final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+
+                }
+                System.out.println(progress);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+    }
+
+
 
     public void onMapSearch(View view) {
         EditText locationSearch = (EditText) findViewById(R.id.editText);
@@ -72,21 +115,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng dortmund_steinstrasse1 = new LatLng(51.519948, 7.461722);
         LatLng dortmund_kapellenstrasse = new LatLng(51.519210, 7.465964);
         LatLng dortmund_steinstrasse = new LatLng(51.520076, 7.457932);
-        LatLng dortmund_zimmerstrasse = new LatLng(51.521384, 7.463759);
+
 
 
         mMap.addMarker(new MarkerOptions().position(dortmund).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
         mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
         mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
         mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
 
+        //final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dortmund,12f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dortmund, 12f));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mMap.setMyLocationEnabled(true);
+
     }
+
 }
