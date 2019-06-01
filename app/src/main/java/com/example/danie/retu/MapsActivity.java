@@ -2,6 +2,7 @@ package com.example.danie.retu;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -29,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
     private SeekBar seekbar_zeit;
@@ -118,20 +119,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        mMap.addMarker(new MarkerOptions().position(dortmund).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
 
         //final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+        mMap.setOnInfoWindowClickListener(this);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dortmund, 12f));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mMap.setMyLocationEnabled(true);
+
+    }
+
+    @Override
+    public  void onInfoWindowClick(Marker marker){
+        Intent myIntent = new Intent(this, Uebersicht.class);
+        startActivity(myIntent);
+
 
     }
 
