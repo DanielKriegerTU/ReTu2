@@ -35,6 +35,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     private GoogleMap mMap;
     private SeekBar seekbar_zeit;
     final LatLng dortmund_zimmerstrasse = new LatLng(51.521384, 7.463759);
+    Marker zimmerstr ;
+    Marker zimmerstr49;
+    Marker zimmerstr50 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,13 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress == 50) {
-
-                    final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+                  zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
+                  zimmerstr.setTitle("Super Platz verfügbar");
 
                 }
                 if (progress == 49) {
-
-                    final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+                    zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz));
+                    zimmerstr.setTitle("Leider kein Platz verfügbar");
 
                 }
                 System.out.println(progress);
@@ -119,14 +122,15 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
 
 
-        mMap.addMarker(new MarkerOptions().position(dortmund).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" ").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        //mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title("").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
 
-        //final Marker zimmerstrasse = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title(" Text ergaenzen").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen)));
+        zimmerstr = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+
         mMap.setOnInfoWindowClickListener(this);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dortmund, 12f));
@@ -134,13 +138,18 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
             return;
         }
         mMap.setMyLocationEnabled(true);
-
     }
+
+
+
+
 
     @Override
     public  void onInfoWindowClick(Marker marker){
+        if(!marker.getTitle().equals("Leider kein Platz verfügbar")){
+
         Intent myIntent = new Intent(this, Uebersicht.class);
-        startActivity(myIntent);
+        startActivity(myIntent);}
 
 
     }

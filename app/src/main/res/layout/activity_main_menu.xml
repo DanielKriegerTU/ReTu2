@@ -6,25 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MainMenu">
 
-    <ImageView
-        android:id="@+id/retoureanmelden"
-        android:onClick="OnClickRetoureAnmelden"
+    <include
+        layout="@layout/action_bar"
+        android:id="@+id/action_bar"/>
 
-        app:layout_constraintTop_toTopOf="parent"
+    <TextView
+        android:id="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="16pt"
+        android:text="Wilkommen Zurück Daniel Krieger" />
 
+
+
+    <ImageView
+        app:layout_constraintTop_toBottomOf="@id/textView12"
+        android:id="@+id/retoureanmelden"
+        android:onClick="OnClickRetoureAnmelden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@drawable/retoureanmelden"
-        tools:layout_editor_absoluteY="60dp" />
+        />
 
     <ImageView
         android:id="@+id/meineretouren"
-        app:layout_constraintTop_toBottomOf="@id/retoureanmelden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/retoureanmelden"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/meineretouren"
-        tools:layout_editor_absoluteY="20dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
 
 
