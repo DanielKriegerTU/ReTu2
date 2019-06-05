@@ -8,11 +8,24 @@ import android.widget.Toast;
 
 public class Uebersicht extends AppCompatActivity {
 
+    public RetourenEntity retoure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uebersicht_angaben);
+
+
+        retoure = new RetourenEntity();
+        retoure.setRetoureID(MainMenu.retourenID);
+        retoure.setAbgabeort("Kaiserviertel");
+        retoure.setDatum("05.05.2019");
+        retoure.setPaketgroesse("M");
+
+
+
+
+
 
     }
 
@@ -23,8 +36,11 @@ public class Uebersicht extends AppCompatActivity {
     }
 
     public void OnClickBestaetigung(View view){
+        //To-Do: Absichern dass Primary Key einmalig ist: und falls nicht insert verhindern.
+       // MainMenu.datenbank.getRetourenDAO().deleteAll();
+        MainMenu.datenbank.getRetourenDAO().insert(retoure);
         Intent myIntent = new Intent(this, MainMenu.class);
-        Toast toast = Toast.makeText(this,"Es wurde ein Platz für Sie reserviert", Toast.LENGTH_LONG );
+        Toast toast = Toast.makeText(this,"Es wurde ein Platz für Sie reserviert" + "", Toast.LENGTH_LONG );
         toast.show();
         startActivity(myIntent);
     }

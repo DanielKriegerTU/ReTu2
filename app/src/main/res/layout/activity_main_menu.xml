@@ -32,6 +32,8 @@
 
     <ImageView
         android:id="@+id/meineretouren"
+        android:clickable="true"
+        android:onClick="OnClickMeineRetouren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
