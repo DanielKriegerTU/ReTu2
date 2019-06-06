@@ -39,72 +39,19 @@ public class Identifikation extends AppCompatActivity {
         setContentView(R.layout.activity_retoure_identifizieren);
         TextView txtView = (TextView) findViewById(R.id.txtContent);
         Button AusDatei = (Button) findViewById(R.id.ButtonAusDatei);
-       // Button Identifizieren = (Button) findViewById(R.id.Buttonidentifizieren);
+
         ImageView myImageView = findViewById(R.id.imgview);
-
-        //ImageView myImageView = (ImageView) findViewById(R.id.imgview);
-        //Bitmap myBitmap = BitmapFactory.decodeResource(
-               // getApplicationContext().getResources(),
-                // R.drawable.puppy);
-        //myImageView.setImageBitmap(myBitmap);
-
-
-
-
-       // Frame frame = new Frame.Builder().setBitmap(myBitmap).build();
-        // SparseArray<Barcode> barcodes = detector.detect(frame);
-
-       // final Barcode thisCode = barcodes.valueAt(0);
-        // barcodeText = thisCode.rawValue;
 
 }
 
     public void OnClickAusDatei(View view) {
-
         performFileSearch();
     }
 
     public void OnClickAnmelden(View view) {
-
         Intent myIntent = new Intent(this, MapsActivity.class);
         startActivity(myIntent);
     }
-
-
-    //OnClick identifizieren wurde in OnActivityResult uebernommen
-   /* public void OnClickIdentifizieren(View view){
-        TextView txtView = (TextView) findViewById(R.id.txtContent);
-        detector =
-                new BarcodeDetector.Builder(getApplicationContext())
-                        .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
-                        .build();
-        if(!detector.isOperational()){
-            txtView.setText("Could not set up the detector!");
-            return;
-        }
-            System.out.println("DAs ist die URI 2"+currentUri2 );
-        //
-        try { //Bitmap myBitmap2 = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.puppy);
-
-            Bitmap myBitmap2 = getBitmapFromUri(currentUri2);
-            Frame frame = new Frame.Builder().setBitmap(myBitmap2).build();
-            SparseArray<Barcode> barcodes = detector.detect(frame);
-            Barcode thisCode = barcodes.valueAt(0);
-
-            txtView.setText("Retourennummer: " + thisCode.rawValue); }
-
-          catch (IOException ie){
-
-                txtView.setText("Auslesen fehlgeschlagen");}
-
-
-            //Toast toast = Toast.makeText(this, barcodeText , Toast.LENGTH_LONG );
-            //toast.show();
-            //Intent myIntent = new Intent(this, MapsActivity.class);
-            //startActivity(myIntent);
-        } */
-
-
 
 
     public void performFileSearch() {
@@ -162,10 +109,22 @@ public class Identifikation extends AppCompatActivity {
                         Frame frame = new Frame.Builder().setBitmap(myBitmap2).build();
                         SparseArray<Barcode> barcodes = detector.detect(frame);
                         Barcode thisCode = barcodes.valueAt(0);
+                        String wert = thisCode.rawValue;
+                        System.out.println(thisCode.rawValue);
 
+                        if(wert.equalsIgnoreCase("1234567"))
+                        { txtView.setText("Retourennummer: " + thisCode.rawValue );
+                            Button weiter = findViewById(R.id.ButtonAnmelden);
+                            weiter.setBackgroundColor(getResources().getColor(R.color.Rot));
+                            weiter.setText("Anmeldung nicht möglich, \n Diese Retoure wurde bereits angemeldet");
+
+                        }
+                        else{
                         txtView.setText("Retourennummer: " + thisCode.rawValue+ "\nIhre Sendung wurde als Retoure identifiziert" );
                         Button weiter = findViewById(R.id.ButtonAnmelden);
                         weiter.setBackgroundColor(getResources().getColor(R.color.ReTuGruen));
+                            weiter.setText("Anmeldung möglich, \nWeiter zur Auswahl des Abgabeorts");
+                        }
 
                     }
 
