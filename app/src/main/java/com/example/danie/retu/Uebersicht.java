@@ -37,7 +37,7 @@ public class Uebersicht extends AppCompatActivity {
 
     public void OnClickBestaetigung(View view){
         //To-Do: Absichern dass Primary Key einmalig ist: und falls nicht insert verhindern.
-       // MainMenu.datenbank.getRetourenDAO().deleteAll();
+        MainMenu.datenbank.getRetourenDAO().deleteById(retoure.getRetoureID());
         MainMenu.datenbank.getRetourenDAO().insert(retoure);
         Intent myIntent = new Intent(this, MainMenu.class);
         Toast toast = Toast.makeText(this,"Es wurde ein Platz für Sie reserviert" + "", Toast.LENGTH_LONG );

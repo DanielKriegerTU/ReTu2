@@ -32,16 +32,16 @@
 
     <ImageView
         android:id="@+id/meineretouren"
+        android:layout_width="328dp"
+        android:layout_height="246dp"
+        android:layout_marginBottom="5dp"
         android:clickable="true"
         android:onClick="OnClickMeineRetouren"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/retoureanmelden"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.292"
         app:srcCompat="@drawable/meineretouren"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="41dp" />
 
 
 

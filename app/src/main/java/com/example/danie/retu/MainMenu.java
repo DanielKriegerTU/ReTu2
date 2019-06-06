@@ -28,6 +28,7 @@ public class MainMenu extends AppCompatActivity {
 
 
 
+
         datenbank = Room.databaseBuilder(getApplicationContext(), RetourenDatenbank.class, "aufgegebene Retouren")
                 .allowMainThreadQueries()
                 .build();
@@ -39,7 +40,7 @@ public class MainMenu extends AppCompatActivity {
         // Einalige Id wird generiert und spaeter in der Klasse Ubersicht abgerugen um dann an die Datenbank zu uebergeben.
         erhoehungId = erhoehungId+1;
         retourenID = retourenID+erhoehungId;
-        Intent myIntent = new Intent(this, MapsActivity.class);
+        Intent myIntent = new Intent(this, Identifikation.class);
         //myIntent.putExtra("ReteourenID", retourenID);
         startActivity(myIntent);
     }
