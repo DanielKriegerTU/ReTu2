@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imgview"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="68dp"
+            android:background="@color/common_google_signin_btn_text_dark_disabled"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtContent"
+            app:layout_constraintTop_toBottomOf="@id/ButtonAusDatei"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <Button
+            android:id="@+id/ButtonAusDatei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:onClick="OnClickAusDatei"
+            android:text="Barcode aus Datei"
+            app:layout_constraintTop_toBottomOf="@id/imgview"
+
+            tools:layout_editor_absoluteX="43dp" />
+
+        <Button
+            android:id="@+id/ButtonKamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:onClick="OnClickKamera"
+            android:text="Barcode mit Kamera"
+            app:layout_constraintLeft_toRightOf="@id/ButtonAusDatei"
+            app:layout_constraintTop_toBottomOf="@id/imgview" />
+
+
+        <Button
+            android:id="@+id/ButtonAnmelden"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="top"
+            android:layout_marginTop="40dp"
+            android:onClick="OnClickAnmelden"
+            android:text="Weiter zur Ort- und Zeitauswahl"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="63dp" />
+
+
+</android.support.constraint.ConstraintLayout>
