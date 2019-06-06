@@ -36,8 +36,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     private SeekBar seekbar_zeit;
     final LatLng dortmund_zimmerstrasse = new LatLng(51.521384, 7.463759);
     Marker zimmerstr ;
-    Marker zimmerstr49;
-    Marker zimmerstr50 = null;
+    Marker steinstr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +60,48 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         seekbar_zeit.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress == 50) {
+
+                if (progress == 39) {
+                    zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz));
+                    zimmerstr.setTitle("Leider kein Platz verfügbar");
+                }
+
+                if (progress == 40) {
                   zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
                   zimmerstr.setTitle("Super Platz verfügbar");
-
                 }
+
                 if (progress == 49) {
+                    zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
+                    zimmerstr.setTitle("Super Platz verfügbar");
+                }
+
+                if (progress == 50) {
+
                     zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz));
                     zimmerstr.setTitle("Leider kein Platz verfügbar");
 
+                    steinstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz));
+                    steinstr.setTitle("Leider kein Platz verfügbar");
                 }
+
+                if (progress == 59) {
+                    steinstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
+                    steinstr.setTitle("Super Platz verfügbar");
+                }
+
+                if (progress == 69) {
+                    steinstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
+                    steinstr.setTitle("Super Platz verfügbar");
+                }
+
+                if (progress == 70) {
+                    steinstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz));
+                    steinstr.setTitle("Leider kein Platz verfügbar");
+                }
+
+
+
                 System.out.println(progress);
 
             }
@@ -120,16 +152,22 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         LatLng dortmund_kapellenstrasse = new LatLng(51.519210, 7.465964);
         LatLng dortmund_steinstrasse = new LatLng(51.520076, 7.457932);
 
-
+        LatLng Berlin_Fern = new LatLng(52.521941, 13.404681);
+        LatLng Berlin_Nikolai = new LatLng(52.517478, 13.407142);
+        LatLng Berlin_Museum = new LatLng(52.519744, 13.398187);
 
         mMap.addMarker(new MarkerOptions().position(dortmund).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
         mMap.addMarker(new MarkerOptions().position(dortmund_leopoldstr).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
-        mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+
         mMap.addMarker(new MarkerOptions().position(dortmund_kapellenstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
         mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse1).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(Berlin_Nikolai).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(Berlin_Fern).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        mMap.addMarker(new MarkerOptions().position(Berlin_Museum).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
         //mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title("").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
 
         zimmerstr = mMap.addMarker(new MarkerOptions().position(dortmund_zimmerstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
+        steinstr = mMap.addMarker(new MarkerOptions().position(dortmund_steinstrasse).title("Leider kein Platz verfügbar").icon(BitmapDescriptorFactory.fromResource(R.mipmap.retuschwarz)));
 
         mMap.setOnInfoWindowClickListener(this);
 
