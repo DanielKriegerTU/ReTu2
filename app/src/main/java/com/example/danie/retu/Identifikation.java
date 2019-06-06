@@ -64,6 +64,13 @@ public class Identifikation extends AppCompatActivity {
         performFileSearch();
     }
 
+    public void OnClickKamera(View view) {
+
+        Intent myIntent = new Intent(this, PaketGroesse.class);
+        startActivity(myIntent);
+    }
+
+
     public void OnClickAnmelden(View view) {
 
         Intent myIntent = new Intent(this, MapsActivity.class);
