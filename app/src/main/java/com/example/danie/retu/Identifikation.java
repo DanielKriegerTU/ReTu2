@@ -109,7 +109,7 @@ public class Identifikation extends AppCompatActivity {
                     System.out.println("Erfolgreich geladen");
                     currentUri = resultData.getData();
                     // Current URi 2 von mir eingefuegt
-                    surfaceView.setVisibility(View.INVISIBLE);
+
 
                     currentUri2 = resultData.getData();
                     myImageView = findViewById(R.id.imgview);
@@ -124,7 +124,7 @@ public class Identifikation extends AppCompatActivity {
                         txtView.setText("Could not set up the detector!");
                         return;
                     }
-                    System.out.println("DAs ist die URI 2"+currentUri2 );
+                    System.out.println("Das ist die URI 2"+currentUri2 );
                     //
                     try { //Bitmap myBitmap2 = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.puppy);
 
