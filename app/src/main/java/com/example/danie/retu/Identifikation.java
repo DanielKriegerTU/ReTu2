@@ -33,6 +33,8 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 
 public class Identifikation extends AppCompatActivity {
+    Intent intent = getIntent();
+
     public String barcodeText = "";
     private static final int READ_REQUEST_CODE = 42;
     private static final int CREATE_REQUEST_CODE = 40;
@@ -56,89 +58,18 @@ public class Identifikation extends AppCompatActivity {
         ImageView myImageView = findViewById(R.id.imgview);
 
         // Kamera
-        surfaceView =findViewById(R.id.camerapreview);
 
-}
+    }
 
     public void OnClickAusDatei(View view) {
         performFileSearch();
     }
 
-    public void OnClickAnmelden(View view) {
-        Intent myIntent = new Intent(this, MapsActivity.class);
-        startActivity(myIntent);
-    }
+
 
     public  void OnClickKamera(View view){
-        System.out.println("Gedrueckt Kamera");
-        surfaceView =findViewById(R.id.camerapreview);
-        final TextView txtView = findViewById(R.id.txtContent);
-
-        surfaceView.setVisibility(View.VISIBLE);
-        barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.QR_CODE).build();
-
-        cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(640, 480).build();
-
-
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                try {
-                    cameraSource.start(holder);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });
-
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-            @Override
-            public void release() {
-
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections<Barcode> detections) {
-                final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-
-                if(qrCodes.size()!=0)
-                {
-                    txtView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(1000);
-                            txtView.setText(qrCodes.valueAt(0).displayValue);
-
-                            surfaceView.setVisibility(View.INVISIBLE);
-                        }
-                    });
-                }
-            }
-        });
+        Intent myIntent = new Intent(this, KameraIdentifikation.class);
+        startActivity(myIntent);
     }
 
 
@@ -245,5 +176,16 @@ public class Identifikation extends AppCompatActivity {
         return image;
     }
 
+    public void OnClickAnmelden(View view) {
+        Intent myIntent = new Intent(this, MapsActivity.class);
+        startActivity(myIntent);
+    }
 
-}
+
+
+
+
+    }
+
+
+
