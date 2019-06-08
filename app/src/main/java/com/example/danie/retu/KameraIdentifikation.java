@@ -114,6 +114,26 @@ public class KameraIdentifikation extends AppCompatActivity {
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             textView.setText(qrCodes.valueAt(0).displayValue);
+
+                            //nachtraeglich
+                            if(qrCodes.valueAt(0).rawValue.equalsIgnoreCase("1234567"))
+                            {
+                                String anzeige = "Retourennummer: " + qrCodes.valueAt(0).rawValue;
+                                textView.setText(anzeige) ;
+                                Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+                                weiter.setBackgroundColor(getResources().getColor(R.color.Rot));
+                                weiter.setText("Anmeldung nicht möglich, \n Diese Retoure wurde bereits angemeldet");
+
+                            }
+                            else{
+                                String anzeige = "Retourennummer: " + qrCodes.valueAt(0).rawValue + "\nIhre Sendung wurde als Retoure identifiziert";
+                                textView.setText(anzeige);
+                                Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+                                weiter.setBackgroundColor(getResources().getColor(R.color.ReTuGruen));
+                                weiter.setText("Anmeldung möglich, \nWeiter zur Auswahl des Abgabeorts");
+                            }
+
+
                         }
                     });
                 }
