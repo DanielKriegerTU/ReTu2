@@ -35,6 +35,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     private GoogleMap mMap;
     private SeekBar seekbar_zeit;
     final LatLng dortmund_zimmerstrasse = new LatLng(51.521384, 7.463759);
+    final LatLng dortmund_steinstrasse = new LatLng(51.520076, 7.457932);
     Marker zimmerstr ;
     Marker steinstr;
 
@@ -150,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         LatLng dortmund_leopoldstr = new LatLng(51.521515, 7.462081);
         LatLng dortmund_steinstrasse1 = new LatLng(51.519948, 7.461722);
         LatLng dortmund_kapellenstrasse = new LatLng(51.519210, 7.465964);
-        LatLng dortmund_steinstrasse = new LatLng(51.520076, 7.457932);
+
 
         LatLng Berlin_Fern = new LatLng(52.521941, 13.404681);
         LatLng Berlin_Nikolai = new LatLng(52.517478, 13.407142);
@@ -184,9 +185,11 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
     @Override
     public  void onInfoWindowClick(Marker marker){
-        if(!marker.getTitle().equals("Leider kein Platz verfügbar")){
+        if(!marker.getTitle().equals("Leider kein Platz verfügbar") && marker.getPosition().equals(dortmund_steinstrasse)){
 
+         String uhrzeit = "UHHR";
         Intent myIntent = new Intent(this, Uebersicht.class);
+         myIntent.putExtra("Uhrzeit", uhrzeit);
         startActivity(myIntent);}
 
 

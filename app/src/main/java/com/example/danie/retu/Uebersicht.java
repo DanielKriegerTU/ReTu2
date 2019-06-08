@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Uebersicht extends AppCompatActivity {
@@ -15,6 +16,18 @@ public class Uebersicht extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uebersicht_angaben);
 
+        //String aus Activity Maps
+        String Uhrzeit;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                Uhrzeit= null;
+            } else {
+                Uhrzeit= extras.getString("Uhrzeit");
+            }
+        } else {
+            Uhrzeit= (String) savedInstanceState.getSerializable("Uhrzeit");
+        }
 
         retoure = new RetourenEntity();
         retoure.setRetoureID(MainMenu.retourenID);
@@ -22,7 +35,8 @@ public class Uebersicht extends AppCompatActivity {
         retoure.setDatum("05.05.2019");
         retoure.setPaketgroesse("M");
 
-
+        TextView datum = findViewById(R.id.Datum);
+        datum.setText(Uhrzeit);
 
 
 
