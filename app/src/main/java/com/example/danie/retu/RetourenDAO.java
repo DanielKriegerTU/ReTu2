@@ -18,7 +18,7 @@ public interface RetourenDAO {
     @Query("DELETE FROM retouren")
     void deleteAll();
 
-    @Query(("DELETE FROM retouren WHERE retoureID = :ID" ))
+    @Query("DELETE FROM retouren WHERE retoureID = :ID" )
      void deleteById(String ID);
 
     @Update
@@ -26,5 +26,11 @@ public interface RetourenDAO {
 
     @Query("SELECT * from retouren")
      List<RetourenEntity> getAllRetouren();
+
+    @Query("SELECT retoureID FROM retouren WHERE retoureID LIKE :search " )
+     List<String> findID(String search);
+
+
+
 
 }

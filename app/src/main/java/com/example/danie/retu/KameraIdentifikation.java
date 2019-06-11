@@ -31,6 +31,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.List;
 
 public class KameraIdentifikation extends AppCompatActivity {
     Intent intent = getIntent();
@@ -48,6 +49,7 @@ public class KameraIdentifikation extends AppCompatActivity {
     public ImageView myImageView;
     public Uri currentUri2;
     public BarcodeDetector detector;
+    public String intentBarcode = "";
 
 
     @Override
@@ -116,11 +118,17 @@ public class KameraIdentifikation extends AppCompatActivity {
                             textView.setText(qrCodes.valueAt(0).displayValue);
 
                             //nachtraeglich
-                            if(qrCodes.valueAt(0).rawValue.equalsIgnoreCase("1234567"))
+                            List<String> doppelID = MainMenu.datenbank.getRetourenDAO().findID(qrCodes.valueAt(0).rawValue);
+                            System.out.println("Die groeße der Liste is  "+ doppelID.size());
+                            if(doppelID.size() > 0)
+                            //if(qrCodes.valueAt(0).rawValue.equalsIgnoreCase("1234567"))
                             {
                                 String anzeige = "Retourennummer: " + qrCodes.valueAt(0).rawValue;
                                 textView.setText(anzeige) ;
+                                intentBarcode = qrCodes.valueAt(0).rawValue;
                                 Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+                                //sperrt den Knopf
+                                weiter.setClickable(false);
                                 weiter.setBackgroundColor(getResources().getColor(R.color.Rot));
                                 weiter.setText("Anmeldung nicht möglich, \n Diese Retoure wurde bereits angemeldet");
 
@@ -128,7 +136,10 @@ public class KameraIdentifikation extends AppCompatActivity {
                             else{
                                 String anzeige = "Retourennummer: " + qrCodes.valueAt(0).rawValue + "\nIhre Sendung wurde als Retoure identifiziert";
                                 textView.setText(anzeige);
+                                intentBarcode = qrCodes.valueAt(0).rawValue;
                                 Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+                                //Freigabe Button
+                                weiter.setClickable(true);
                                 weiter.setBackgroundColor(getResources().getColor(R.color.ReTuGruen));
                                 weiter.setText("Anmeldung möglich, \nWeiter zur Auswahl des Abgabeorts");
                             }
@@ -143,6 +154,7 @@ public class KameraIdentifikation extends AppCompatActivity {
 
     public void OnClickAnmeldenzwei(View view){
         Intent myIntent = new Intent(this, MapsActivity.class);
+        myIntent.putExtra("ID", intentBarcode);
         startActivity(myIntent);
     }
 
@@ -207,11 +219,16 @@ public class KameraIdentifikation extends AppCompatActivity {
                         SparseArray<Barcode> barcodes = detector.detect(frame);
                         Barcode thisCode = barcodes.valueAt(0);
                         String wert = thisCode.rawValue;
+                        intentBarcode = thisCode.rawValue;
                         System.out.println(thisCode.rawValue);
 
-                        if(wert.equalsIgnoreCase("1234567"))
+                    //TODO Bereits gespeicherte Barcodes in Datenbnak erkennen und sperren.
+                        List<String> doppelID = MainMenu.datenbank.getRetourenDAO().findID(thisCode.rawValue);
+                        System.out.println("Die groeße der Liste is  "+ doppelID.size());
+                        if(doppelID.size() > 0)
                         { txtView.setText("Retourennummer: " + thisCode.rawValue );
                             Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+                            weiter.setClickable(false);
                             weiter.setBackgroundColor(getResources().getColor(R.color.Rot));
                             weiter.setText("Anmeldung nicht möglich, \n Diese Retoure wurde bereits angemeldet");
 
@@ -219,6 +236,7 @@ public class KameraIdentifikation extends AppCompatActivity {
                         else{
                             txtView.setText("Retourennummer: " + thisCode.rawValue+ "\nIhre Sendung wurde als Retoure identifiziert" );
                             Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+                            weiter.setClickable(true);
                             weiter.setBackgroundColor(getResources().getColor(R.color.ReTuGruen));
                             weiter.setText("Anmeldung möglich, \nWeiter zur Auswahl des Abgabeorts");
                         }

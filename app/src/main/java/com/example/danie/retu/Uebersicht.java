@@ -13,6 +13,7 @@ public class Uebersicht extends AppCompatActivity {
 
     public RetourenEntity retoure;
 
+    public String intentidAenderungen = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class Uebersicht extends AppCompatActivity {
         String Datum;
         String Paketgroesse;
         String Abgabeort;
+        String intentID;
         int MapId;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -31,6 +33,7 @@ public class Uebersicht extends AppCompatActivity {
                 Datum =null;
                 Paketgroesse = null;
                 Abgabeort =null;
+                intentID=null;
                 MapId = R.drawable.map_zimmerstrasse;
 
             } else {
@@ -39,6 +42,7 @@ public class Uebersicht extends AppCompatActivity {
                 Paketgroesse = extras.getString("Paketgroesse");
                 Abgabeort = extras.getString("Abgabeort");
                 MapId = extras.getInt("MapId");
+                intentID = extras.getString("ID");
             }
         } else {
             Uhrzeit= (String) savedInstanceState.getSerializable("Uhrzeit");
@@ -46,16 +50,19 @@ public class Uebersicht extends AppCompatActivity {
             Paketgroesse= (String) savedInstanceState.getSerializable("Paketgroess");
             Abgabeort= (String) savedInstanceState.getSerializable("Abgabeort");
             MapId = (int) savedInstanceState.getSerializable("MapId");
+            intentID = (String) savedInstanceState.getSerializable("ID");
 
         }
 
+        intentidAenderungen = intentID;
 
         //Datenbank ------------------------------------------------------------------
         retoure = new RetourenEntity();
-        retoure.setRetoureID(MainMenu.retourenID);
+        retoure.setRetoureID(intentID);
         retoure.setAbgabeort(Abgabeort);
         retoure.setDatum(Datum);
         retoure.setPaketgroesse(Paketgroesse);
+        retoure.setAbgabezeit(Uhrzeit);
 //---------------------------------------------------------------------------------------------
 
         TextView Vdatum = findViewById(R.id.Datum);
@@ -82,6 +89,9 @@ public class Uebersicht extends AppCompatActivity {
 
     public void OnClickUeberarbeiten(View view){
         Intent myIntent = new Intent(this, MapsActivity.class);
+        // ID muss bei Aenderungen wieder mitübergeben werden.
+        myIntent.putExtra("ID",intentidAenderungen );
+        System.out.println("intentidAenderungen"+ intentidAenderungen);
         startActivity(myIntent);
 
     }

@@ -10,39 +10,48 @@
         layout="@layout/action_bar"
         android:id="@+id/action_bar"/>
 
-    <TextView
-        android:id="@+id/textView12"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+
         app:layout_constraintTop_toBottomOf="@id/action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16pt"
-        android:text="Wilkommen Zurück Daniel Krieger" />
-
-
-
-    <ImageView
-        app:layout_constraintTop_toBottomOf="@id/textView12"
-        android:id="@+id/retoureanmelden"
-        android:onClick="OnClickRetoureAnmelden"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@drawable/retoureanmelden"
-        />
-
-    <ImageView
-        android:id="@+id/meineretouren"
-        android:layout_width="328dp"
-        android:layout_height="246dp"
-        android:layout_marginBottom="5dp"
-        android:clickable="true"
-        android:onClick="OnClickMeineRetouren"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/retoureanmelden"
-        app:layout_constraintVertical_bias="0.292"
-        app:srcCompat="@drawable/meineretouren"
-        tools:layout_editor_absoluteX="41dp" />
+        >
 
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Wilkommen Zurück Daniel Krieger"
+            android:textSize="16pt" />
+
+        <ImageView
+            android:id="@+id/retoureanmelden"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_weight="1"
+
+            android:clickable="true"
+            android:onClick="OnClickRetoureAnmelden"
+            app:srcCompat="@drawable/retoureanmelden" />
+
+        <ImageView
+            android:id="@+id/meineretouren"
+            android:layout_width="wrap_content"
+            android:layout_height="210dp"
+            android:layout_weight="1"
+
+
+
+            android:clickable="true"
+            android:onClick="OnClickMeineRetouren"
+            app:srcCompat="@drawable/meineretouren" />
+
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
