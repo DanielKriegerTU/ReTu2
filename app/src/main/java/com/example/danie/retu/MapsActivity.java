@@ -10,18 +10,14 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -39,11 +35,27 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     Marker zimmerstr ;
     Marker steinstr;
 
+    String intentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        //Intent ID auffangen
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                intentId= null;
+
+            } else {
+                intentId= extras.getString("ID");
+            }
+        } else {
+            intentId= (String) savedInstanceState.getSerializable("ID");
+        }
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -180,19 +192,44 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     }
 
 
-
-
-
     @Override
-    public  void onInfoWindowClick(Marker marker){
-        if(!marker.getTitle().equals("Leider kein Platz verfügbar") && marker.getPosition().equals(dortmund_steinstrasse)){
+    public void onInfoWindowClick(Marker marker) {
+        if (!marker.getTitle().equals("Leider kein Platz verfügbar") && marker.getPosition().equals(dortmund_steinstrasse)) {
 
-         String uhrzeit = "UHHR";
-        Intent myIntent = new Intent(this, Uebersicht.class);
-         myIntent.putExtra("Uhrzeit", uhrzeit);
-        startActivity(myIntent);}
+            String uhrzeit = "17:30";
+            String datum = "20.06.19";
+            String paketgroesse = "M";
+            String abgabeort = "Steinstr. 2";
+            int Mapid = R.drawable.map_steinstrasse;
+            Intent myIntent = new Intent(this, Uebersicht.class);
+            myIntent.putExtra("Uhrzeit", uhrzeit);
+            myIntent.putExtra("Datum", datum);
+            myIntent.putExtra("Paketgroesse", paketgroesse);
+            myIntent.putExtra("Abgabeort", abgabeort);
+            myIntent.putExtra("MapId", Mapid);
+            myIntent.putExtra("ID", intentId);
+            startActivity(myIntent);
+        }
+
+        if (!marker.getTitle().equals("Leider kein Platz verfügbar") && marker.getPosition().equals(dortmund_zimmerstrasse)) {
+
+            String uhrzeit = "16:30";
+            String datum = "20.06.19";
+            String paketgroesse = "M";
+            String abgabeort = "Zimmerstr. 15";
+            int Mapid = R.drawable.map_zimmerstrasse;
+            Intent myIntent = new Intent(this, Uebersicht.class);
+            myIntent.putExtra("Uhrzeit", uhrzeit);
+            myIntent.putExtra("Datum", datum);
+            myIntent.putExtra("Paketgroesse", paketgroesse);
+            myIntent.putExtra("Abgabeort", abgabeort);
+            myIntent.putExtra("MapId", Mapid);
+            myIntent.putExtra("ID", intentId);
+            startActivity(myIntent);
+        }
 
 
     }
+
 
 }

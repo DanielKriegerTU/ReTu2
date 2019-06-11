@@ -1,13 +1,15 @@
 package com.example.danie.retu;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.support.annotation.NonNull;
 
 
 @Entity(tableName = "retouren")
 public class RetourenEntity {
-
 
 
     @PrimaryKey()
@@ -17,6 +19,10 @@ public class RetourenEntity {
     private String paketgroesse;
     private String datum;
     private String abgabeort;
+
+
+
+    private String abgabezeit;
 
     @NonNull
     public String getRetoureID() {
@@ -52,4 +58,9 @@ public class RetourenEntity {
     public void setAbgabeort(String abgabeort) {
         this.abgabeort = abgabeort;
     }
+
+   public String getAbgabezeit() { return abgabezeit; }
+
+    public void setAbgabezeit(String abgabezeit) { this.abgabezeit = abgabezeit; }
+
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Abgabeort:"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:text="Abgabezeit:"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retouren ID:"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/AdapterAbgabeOrt"
+            android:textColor="@color/ReTuGruen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Steinstrasse 25"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/AdapterAbgabeZeit"
+            android:textColor="@color/ReTuGruen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15:30 Uhr"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/AdapterRetourenID"
+            android:textColor="@color/ReTuGruen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1234567"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/qrCodeMeineRetouren"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/qrcodemeineretouren" />
+
+    </LinearLayout>
+
+</LinearLayout>

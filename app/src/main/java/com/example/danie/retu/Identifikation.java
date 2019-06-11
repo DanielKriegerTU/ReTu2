@@ -31,6 +31,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.List;
 
 public class Identifikation extends AppCompatActivity {
     Intent intent = getIntent();
@@ -43,6 +44,7 @@ public class Identifikation extends AppCompatActivity {
     public Uri currentUri2;
     public  Bitmap myBitmap;
     public BarcodeDetector detector;
+    public String intentBarcode = "";
     SurfaceView surfaceView;
     CameraSource cameraSource;
     TextView textView;
@@ -133,11 +135,17 @@ public class Identifikation extends AppCompatActivity {
                         SparseArray<Barcode> barcodes = detector.detect(frame);
                         Barcode thisCode = barcodes.valueAt(0);
                         String wert = thisCode.rawValue;
+
+                        //setzen des Strings zur weitergabe per Intent
+                        intentBarcode = thisCode.rawValue;
                         System.out.println(thisCode.rawValue);
 
-                        if(wert.equalsIgnoreCase("1234567"))
+                        List<String> doppelID = MainMenu.datenbank.getRetourenDAO().findID(thisCode.rawValue);
+                        System.out.println("Die groeße der Liste is  "+ doppelID.size());
+                        if(doppelID.size() > 0)
                         { txtView.setText("Retourennummer: " + thisCode.rawValue );
                             Button weiter = findViewById(R.id.ButtonAnmelden);
+                            weiter.setClickable(false);
                             weiter.setBackgroundColor(getResources().getColor(R.color.Rot));
                             weiter.setText("Anmeldung nicht möglich, \n Diese Retoure wurde bereits angemeldet");
 
@@ -145,6 +153,7 @@ public class Identifikation extends AppCompatActivity {
                         else{
                         txtView.setText("Retourennummer: " + thisCode.rawValue+ "\nIhre Sendung wurde als Retoure identifiziert" );
                         Button weiter = findViewById(R.id.ButtonAnmelden);
+                        weiter.setClickable(true);
                         weiter.setBackgroundColor(getResources().getColor(R.color.ReTuGruen));
                             weiter.setText("Anmeldung möglich, \nWeiter zur Auswahl des Abgabeorts");
                         }
@@ -178,6 +187,7 @@ public class Identifikation extends AppCompatActivity {
 
     public void OnClickAnmelden(View view) {
         Intent myIntent = new Intent(this, MapsActivity.class);
+        myIntent.putExtra("ID", intentBarcode);
         startActivity(myIntent);
     }
 
