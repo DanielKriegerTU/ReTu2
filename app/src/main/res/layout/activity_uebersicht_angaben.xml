@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:background="@color/ReTuGruen"
         android:text="Zusammenfassung"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="16pt" />
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="16pt"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -140,41 +140,40 @@
     <ImageView
         android:id="@+id/mapbild"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="360dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:contentDescription="map_abholort"
-        />
+        android:contentDescription="map_abholort" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="255dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button"
-            android:onClick="OnClickUeberarbeiten"
-            android:text="Angaben Ändern"
-            android:background="@color/Rot"
-            android:layout_margin="5dp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="125dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textSize="18dp"
-        />
+            android:background="@drawable/Angabenaendern"
+            android:onClick="OnClickUeberarbeiten"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button2"
-            android:onClick="OnClickBestaetigung"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="125dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@color/ReTuGruen"
-            android:text="Retoure Anmelden"
-            android:textSize="18dp" />
+            android:background="@drawable/Retoureanmeldenbutton"
+            android:onClick="OnClickBestaetigung"
+            android:text=""
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="24sp" />
     </LinearLayout>
 
 
