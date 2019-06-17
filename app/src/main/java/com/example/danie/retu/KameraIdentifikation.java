@@ -59,6 +59,13 @@ public class KameraIdentifikation extends AppCompatActivity {
         surfaceView =(SurfaceView)findViewById(R.id.camerapreview);
         textView = (TextView)findViewById(R.id.txtContentzwei);
 
+        // Button zu Beginn auf Gelb setzen und Hinweis im Text auf erforderliche Anmeldung
+        Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+        weiter.setText("Bitte verifizieren Sie Ihre Retoure\n mittels QR-Code");
+        weiter.setBackgroundColor(getResources().getColor(R.color.Gelb));
+        weiter.setClickable(false);
+
+
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
 

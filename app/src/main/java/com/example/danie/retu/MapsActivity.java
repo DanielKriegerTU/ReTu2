@@ -81,12 +81,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
                 if (progress == 40) {
                   zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
-                  zimmerstr.setTitle("Super Platz verfügbar");
+                  zimmerstr.setTitle("Ein Platz ist verfügbar");
                 }
 
                 if (progress == 49) {
                     zimmerstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
-                    zimmerstr.setTitle("Super Platz verfügbar");
+                    zimmerstr.setTitle("Ein Platz ist verfügbar");
                 }
 
                 if (progress == 50) {
@@ -100,12 +100,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
                 if (progress == 59) {
                     steinstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
-                    steinstr.setTitle("Super Platz verfügbar");
+                    steinstr.setTitle("Super, Platz verfügbar");
                 }
 
                 if (progress == 69) {
                     steinstr.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.retugruen));
-                    steinstr.setTitle("Super Platz verfügbar");
+                    steinstr.setTitle("Super, Platz verfügbar");
                 }
 
                 if (progress == 70) {

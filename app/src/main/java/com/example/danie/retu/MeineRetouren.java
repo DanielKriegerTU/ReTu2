@@ -1,6 +1,7 @@
 package com.example.danie.retu;
 
 import android.arch.lifecycle.LiveData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -58,8 +59,28 @@ public class MeineRetouren extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        //NEUe loeschactivity
+
+        final Intent intent = new Intent(this, MeineRetourenDetail.class );
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    intent.putExtra("delID",(retoureneintraege.get(position).getRetoureID() ));
+                    intent.putExtra("delOrt",retoureneintraege.get(position).getAbgabeort() );
+                    intent.putExtra("delZeit", retoureneintraege.get(position).getAbgabezeit());
+                    startActivity(intent);
+                    finish();
+
+                }
+            });
+
+
+
+
         //Delete
             arrayadapter = new ArrayAdapter(MeineRetouren.this, android.R.layout.simple_list_item_activated_1, retoureneintraege);
+
 
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
