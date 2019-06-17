@@ -139,15 +139,16 @@
 
     <ImageView
         android:id="@+id/mapbild"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="360dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
+        android:background="@drawable/map_kaiserstr"
         android:contentDescription="map_abholort" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="255dp"
+        android:layout_height="233dp"
         android:orientation="horizontal">
 
         <Button

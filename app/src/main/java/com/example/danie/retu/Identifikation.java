@@ -34,6 +34,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class Identifikation extends AppCompatActivity {
+    /**
+     * In dieser Klasse wird der BarcodeScanner erstellt. Es ist sowhl möglich einen Barcode über die Kamera einzuscannen, als auch einen Barcode als gespeichertes Foto einzulesen
+     */
+
     Intent intent = getIntent();
 
     public String barcodeText = "";
@@ -53,7 +57,7 @@ public class Identifikation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retoure_identifizieren);
+        setContentView(R.layout.activity_retoure_identifizieren); // Klasse wird einem layout zugewiesen.
         TextView txtView = (TextView) findViewById(R.id.txtContent);
         Button AusDatei = (Button) findViewById(R.id.ButtonAusDatei);
 
@@ -72,12 +76,15 @@ public class Identifikation extends AppCompatActivity {
     public  void OnClickKamera(View view){
         Intent myIntent = new Intent(this, KameraIdentifikation.class);
         startActivity(myIntent);
+        // Die Klasse KameraIdentifikation wird durch anklicken des Kamerabuttons aufgerufen.
     }
 
 
 
 
     public void performFileSearch() {
+
+        // Ermöglicht das Auswählen eines Fotos aus dem Speicher des Smartphones
 
         // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file
         // browser.
