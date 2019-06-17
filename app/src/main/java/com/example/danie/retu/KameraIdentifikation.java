@@ -61,7 +61,7 @@ public class KameraIdentifikation extends AppCompatActivity {
 
         // Button zu Beginn auf Gelb setzen und Hinweis im Text auf erforderliche Anmeldung
         Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
-        weiter.setText("Bitte verifizieren Sie Ihre Retoure\n mittels QR-Code");
+        weiter.setText("Bitte verifizieren Sie Ihre Retoure\n mittels Barcode");
         weiter.setBackgroundColor(getResources().getColor(R.color.Gelb));
         weiter.setClickable(false);
 
