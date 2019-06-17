@@ -78,10 +78,18 @@
 
         <activity android:name=".Uebersicht">
             <intent-filter>
-                 <action android:name="android.intent.action.MapsActivity" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MeineRetourenDetail">
+            <intent-filter>
+                <action android:name="android.intent.action.MapsActivity" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
 
 
         <meta-data

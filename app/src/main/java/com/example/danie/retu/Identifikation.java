@@ -57,7 +57,15 @@ public class Identifikation extends AppCompatActivity {
         TextView txtView = (TextView) findViewById(R.id.txtContent);
         Button AusDatei = (Button) findViewById(R.id.ButtonAusDatei);
 
+
         ImageView myImageView = findViewById(R.id.imgview);
+
+        // Button zu Beginn auf Gelb setzen und Hinweis im Text auf erforderliche Anmeldung
+        Button weiter = findViewById(R.id.ButtonAnmelden);
+        weiter.setText("Bitte verifizieren Sie Ihre Retoure\n mittels QR-Code");
+        weiter.setBackgroundColor(getResources().getColor(R.color.Gelb));
+        weiter.setClickable(false);
+
 
         // Kamera
 
