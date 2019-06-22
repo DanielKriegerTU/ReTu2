@@ -8,6 +8,9 @@ import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 
+//Angedachtes personalisiertes Info Window fuer die Anzeige der Verfuegbaren Plaetze in der Map,
+// Wurde noch nicht in die MapsActivity uebernommen.
+
 public class CustomInfoWindowReTu implements GoogleMap.InfoWindowAdapter {
 
     private Context context;

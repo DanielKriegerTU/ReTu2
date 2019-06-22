@@ -6,7 +6,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
 
-
+// Nicht umgesetzt
 public class PaketGroesse extends AppCompatActivity {
 
     Intent intent = getIntent();

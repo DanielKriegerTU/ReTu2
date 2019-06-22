@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeineRetouren extends AppCompatActivity {
+
+    // Anzeige der in der Datenbank gespeicherten Retouren in einem Listview
 
     ListView listView;
     List<String>  ortArray = new ArrayList<>();
@@ -28,6 +31,10 @@ public class MeineRetouren extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meine_retouren);
+
+        //Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.action_bar);
+        setSupportActionBar(myToolbar);
 
         if(MainMenu.datenbank.getRetourenDAO().getAllRetouren() != null);{
         final List<RetourenEntity> retoureneintraege = MainMenu.datenbank.getRetourenDAO().getAllRetouren();
@@ -63,6 +70,8 @@ public class MeineRetouren extends AppCompatActivity {
 
         final Intent intent = new Intent(this, MeineRetourenDetail.class );
 
+            // Inforamtionen werden bei Click auf Listview-Item an die Activity "MeineRetourenDetail" uebergeben.
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,36 +80,18 @@ public class MeineRetouren extends AppCompatActivity {
                     intent.putExtra("delZeit", retoureneintraege.get(position).getAbgabezeit());
                     startActivity(intent);
                     finish();
-
                 }
             });
 
 
 
 
-        //Delete
+
             arrayadapter = new ArrayAdapter(MeineRetouren.this, android.R.layout.simple_list_item_activated_1, retoureneintraege);
 
 
-            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                    // TODO Auto-generated method stub
-
-                    MainMenu.datenbank.getRetourenDAO().deleteById(retoureneintraege.get(position).getRetoureID());
-                    retoureneintraege.remove(position);
 
 
-                    Toast.makeText(MeineRetouren.this, "Item Deleted", Toast.LENGTH_LONG).show();
-                    arrayadapter.notifyDataSetChanged();
-                    finish();
-                    startActivity(getIntent());
-                    return true;
-                }
-
-            });
 
 
 

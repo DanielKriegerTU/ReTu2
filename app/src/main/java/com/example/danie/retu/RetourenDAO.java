@@ -9,6 +9,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+//Hier werden, im Sinnder der Android rooms Api die Datenbankabfragen definiert
 @Dao
 public interface RetourenDAO {
 
