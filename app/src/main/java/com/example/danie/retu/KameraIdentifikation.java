@@ -14,6 +14,7 @@ import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -33,6 +34,11 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.List;
 
+import static android.graphics.Color.LTGRAY;
+
+// Redundante Logik zur File-Browser Identifikation: Siehe dazu Klasse "Idendifikation"
+//Zusaetzliche Logik zur Identifikation mittels Kamera
+
 public class KameraIdentifikation extends AppCompatActivity {
     Intent intent = getIntent();
 
@@ -41,7 +47,7 @@ public class KameraIdentifikation extends AppCompatActivity {
     TextView textView;
     BarcodeDetector barcodeDetector;
 
-    //nachtraeglich
+
     //public String barcodeText = "";
     private static final int READ_REQUEST_CODE = 42;
     private static final int CREATE_REQUEST_CODE = 40;
@@ -59,20 +65,23 @@ public class KameraIdentifikation extends AppCompatActivity {
         surfaceView =(SurfaceView)findViewById(R.id.camerapreview);
         textView = (TextView)findViewById(R.id.txtContentzwei);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.action_bar);
+        setSupportActionBar(myToolbar);
+
         // Button zu Beginn auf Gelb setzen und Hinweis im Text auf erforderliche Anmeldung
         Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
-        weiter.setText("Bitte verifizieren Sie Ihre Retoure\n mittels Barcode");
-        weiter.setBackgroundColor(getResources().getColor(R.color.Gelb));
+        weiter.setText("Bitte verifizieren Sie Ihre Retoure\n um fortzufahren");
+        weiter.setBackgroundColor(LTGRAY);
         weiter.setClickable(false);
 
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
-
+        //Kamera initiieren
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
                 .setRequestedPreviewSize(200, 200).build();
 
-
+        // Surface-View zur Kamera Anzeige
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -104,13 +113,13 @@ public class KameraIdentifikation extends AppCompatActivity {
                 cameraSource.stop();
             }
         });
-
+        // Logik zur QR-Code Erkennung
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
 
             }
-
+            // Erkennen des QR-Codes erfolgreich
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
@@ -124,9 +133,11 @@ public class KameraIdentifikation extends AppCompatActivity {
                             vibrator.vibrate(1000);
                             textView.setText(qrCodes.valueAt(0).displayValue);
 
-                            //nachtraeglich
+                            //Ueberpruefen ob ID bereits in Datenbank ist
                             List<String> doppelID = MainMenu.datenbank.getRetourenDAO().findID(qrCodes.valueAt(0).rawValue);
                             System.out.println("Die groeße der Liste is  "+ doppelID.size());
+
+                            // Anmeldung bei Doppelbuchung verhindern
                             if(doppelID.size() > 0)
                             //if(qrCodes.valueAt(0).rawValue.equalsIgnoreCase("1234567"))
                             {
@@ -143,8 +154,11 @@ public class KameraIdentifikation extends AppCompatActivity {
                             else{
                                 String anzeige = "Retourennummer: " + qrCodes.valueAt(0).rawValue + "\nIhre Sendung wurde als Retoure identifiziert";
                                 textView.setText(anzeige);
+
+                                // Id wird gespeichert und spaeter mit dem Intent an die naechste Activity uebergeben
                                 intentBarcode = qrCodes.valueAt(0).rawValue;
                                 Button weiter = findViewById(R.id.ButtonAnmeldenzwei);
+
                                 //Freigabe Button
                                 weiter.setClickable(true);
                                 weiter.setBackgroundColor(getResources().getColor(R.color.ReTuGruen));
@@ -165,6 +179,8 @@ public class KameraIdentifikation extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+
+    // Dokumentation siehe Klasse "Identifikation"
     public  void OnClickAusDateizwei(View view){
         performFileSearch();
     }

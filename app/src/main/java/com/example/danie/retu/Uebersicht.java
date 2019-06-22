@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// Uebersicht der getroffenen Angaben nach Auswahl einer Abgabestation in der Maps-Activity
 public class Uebersicht extends AppCompatActivity {
 
     public RetourenEntity retoure;
@@ -26,6 +27,7 @@ public class Uebersicht extends AppCompatActivity {
         String Abgabeort;
         String intentID;
         int MapId;
+        // Informationen aus Intent auffangen
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -56,7 +58,7 @@ public class Uebersicht extends AppCompatActivity {
 
         intentidAenderungen = intentID;
 
-        //Datenbank ------------------------------------------------------------------
+        //Erstellen der Datenbank Entitaet, welches in der Methode OnClickBestaetigung an die Datenbank uebergeben wird
         retoure = new RetourenEntity();
         retoure.setRetoureID(intentID);
         retoure.setAbgabeort(Abgabeort);
@@ -97,9 +99,7 @@ public class Uebersicht extends AppCompatActivity {
     }
 
     public void OnClickBestaetigung(View view){
-        //To-Do: Absichern dass Primary Key einmalig ist: und falls nicht insert verhindern.
-
-
+        // Speichern der Entitaet in der Datenbank
         MainMenu.datenbank.getRetourenDAO().insert(retoure);
         Intent myIntent = new Intent(this, MainMenu.class);
         Toast toast = Toast.makeText(this,"Es wurde ein Platz für Sie reserviert" + "", Toast.LENGTH_LONG );

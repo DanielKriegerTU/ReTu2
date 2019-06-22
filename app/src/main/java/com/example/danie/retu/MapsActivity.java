@@ -42,7 +42,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        //Intent ID auffangen
+        //ID aus Intent auffangen
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -60,6 +60,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // Seekbar zur Auwahl der Zeit
         ImageView zeitstrahl = (ImageView) findViewById(R.id.zeitstrahl);
         zeitstrahl.setImageResource(R.drawable.zeitstrahl);
         this.seekbar_zeit = findViewById(R.id.seekbar_zeit);
@@ -133,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     }
 
 
-
+    // Suche Nach Orten
     public void onMapSearch(View view) {
         EditText locationSearch = (EditText) findViewById(R.id.editText);
         String location = locationSearch.getText().toString();
@@ -155,6 +157,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         }
     }
 
+    //Setzen der Marker in der Map
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -191,11 +194,15 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         mMap.setMyLocationEnabled(true);
     }
 
-
+    // Click auf Info Window zur Buchung einer Kapazitaet
     @Override
     public void onInfoWindowClick(Marker marker) {
+        //Fallunterscheidung in Abhaenigkeit des gewaehlten Markers
+
         if (!marker.getTitle().equals("Leider kein Platz verfügbar") && marker.getPosition().equals(dortmund_steinstrasse)) {
 
+            //Uebergabe der getroffenen Informationen an die Activity "Uebersicht", bei quittierung werden diese Inforamtionen dann
+            // in der Datenbank gespeichert
             String uhrzeit = "17:30";
             String datum = "20.06.19";
             String paketgroesse = "M";

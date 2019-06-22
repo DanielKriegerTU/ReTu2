@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
-
+// ArrayAdapter zur Anzeige der List-View Items in der Klasse "Meine Retouren"
 public class MeineRetourenAdapter extends ArrayAdapter {
 
     //to reference the Activity

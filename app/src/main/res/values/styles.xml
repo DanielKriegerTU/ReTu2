@@ -2,9 +2,11 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">12sp</item>
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/ReTuGruen</item>
-        <item name="colorPrimaryDark">#D3111111</item>
+        <item name="colorPrimaryDark">#fff</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

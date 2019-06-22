@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:background="@color/ReTuGruen"
         android:text="Zusammenfassung"
-        android:textColor="#000000"
+        android:textColor="#fff"
         android:textStyle="bold"
         android:textSize="16pt" />
 
@@ -22,7 +22,6 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/common_google_signin_btn_text_light"
         android:orientation="horizontal">
 
 
@@ -149,32 +148,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="3dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button"
             android:onClick="OnClickUeberarbeiten"
-            android:text="Angaben Ändern"
-            android:background="@color/Rot"
+            android:textColor="#000"
+            android:text="Angaben\n Ändern"
+            android:backgroundTint="@color/Rot"
+            android:background="@drawable/border"
             android:layout_margin="5dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="18sp"
         />
 
         <Button
             android:id="@+id/button2"
+            android:textColor="#000"
             android:onClick="OnClickBestaetigung"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@color/ReTuGruen"
-            android:text="Retoure Anmelden"
-            android:textSize="18dp" />
+            android:background="@drawable/border"
+            android:backgroundTint="@color/ReTuGruen"
+            android:text="Retoure\n Anmelden"
+            android:textSize="18sp" />
     </LinearLayout>
 
 

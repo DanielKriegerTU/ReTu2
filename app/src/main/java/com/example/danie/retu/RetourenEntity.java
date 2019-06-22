@@ -7,13 +7,14 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
 import android.support.annotation.NonNull;
 
+// Definiert den Aufbau der Datenbank und der Entitaeten
 
 @Entity(tableName = "retouren")
 public class RetourenEntity {
 
-
+    // Primearschluessel
     @PrimaryKey()
-   @NonNull
+    @NonNull
     private String retoureID;
 
     private String paketgroesse;

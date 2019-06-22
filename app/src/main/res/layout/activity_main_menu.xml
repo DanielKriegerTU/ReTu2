@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
 
         app:layout_constraintTop_toBottomOf="@id/action_bar"
@@ -25,7 +25,7 @@
             android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wilkommen Zurück Daniel Krieger"
+            android:text="Wilkommen zurück Daniel Krieger"
             android:textSize="16pt" />
 
         <ImageView
@@ -33,22 +33,22 @@
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_weight="1"
-
             android:clickable="true"
             android:onClick="OnClickRetoureAnmelden"
-            app:srcCompat="@drawable/retoureanmelden" />
+            app:srcCompat="@drawable/retoureanmeldenneu" />
 
         <ImageView
             android:id="@+id/meineretouren"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="210dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:layout_marginBottom="20dp"
 
 
             android:clickable="true"
             android:onClick="OnClickMeineRetouren"
-            app:srcCompat="@drawable/meineretouren" />
+            app:srcCompat="@drawable/meineretourenneu" />
 
     </LinearLayout>
 
