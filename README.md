@@ -11,4 +11,4 @@ Der API-Key muss im manifest.xml unter:
             android:name="com.google.android.geo.API_KEY"
             android:value="Hier den Key einfuegen" />
 
-Eingefuegt werden.
+eingefuegt werden.
