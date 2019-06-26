@@ -1,6 +1,6 @@
 # ReTu2
 
-Zur Anzeige der Maps Activity ist ein privater Maps API KEy notwendig.
+Zur Anzeige der Maps Activity ist ein privater Maps API Key notwendig.
 
 Anleitung zur Generierung eines API-Keys:
 https://developers.google.com/maps/documentation/android-sdk/get-api-key
